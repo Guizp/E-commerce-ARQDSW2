@@ -1,4 +1,5 @@
 🛒 E-Commerce
+
 📌 Descrição
 
 Este projeto consiste em um sistema de e-commerce desenvolvido em Java, permitindo o cadastro e gerenciamento de produtos, clientes e pedidos. O objetivo é aplicar conceitos de desenvolvimento de software, banco de dados e arquitetura de sistemas.

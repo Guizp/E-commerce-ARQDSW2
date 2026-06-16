@@ -1,6 +1,6 @@
-# E-Commerce — Projeto Final (Desenvolvimento de Software para Web 2)
+# E-Commerce — (Desenvolvimento de Software para Web 2)
 
-Sistema de e-commerce de loja única desenvolvido em Java EE, como projeto final da disciplina de Desenvolvimento de Software para Web 2 (ADS — IFSP Campus Araraquara).
+Sistema de e-commerce de loja única desenvolvido em Java, como projeto final da disciplina de Desenvolvimento de Software para Web (ADS — IFSP Campus Araraquara).
 
 ---
 
@@ -170,8 +170,8 @@ No NetBeans:
 ## Funcionalidades implementadas
 
 ### Produtos
-- Busca por descrição e faixa de preço, com **paginação** (requisito do edital ✓)
-- Cadastrar produto com **upload de foto** (requisito do edital ✓)
+- Busca por descrição e faixa de preço, com **paginação** (requisito ✓)
+- Cadastrar produto com **upload de foto** (requisito ✓)
 - Editar produto (substitui foto se uma nova for enviada)
 - Excluir produto (remove o arquivo de foto do disco automaticamente)
 
@@ -181,17 +181,17 @@ No NetBeans:
 
 ---
 
-## Requisitos do edital atendidos até o momento
+## Requisitos atendidos até o momento
 
-| Requisito | Status | Onde |
+| Requisito                      | Status | Onde |
 |---|---|---|
-| Separação de Interesses (SoC) | ✅ | Arquitetura em camadas (controller / service / DAO / modelo / view) |
-| Persistência em banco de dados | ✅ | MySQL via JDBC com `PreparedStatement` |
-| Pool de conexões | ✅ | `DatabaseConnector` via JNDI (`DataSource`) configurado no Tomcat |
-| Arquitetura em camadas | ✅ | Page Controller, Service Layer, DAO, DTO |
-| Paginação de resultados | ✅ | Busca de produtos (`LIMIT ?, ?` com controles de navegação) |
-| Upload de arquivos (foto) | ✅ | Foto do produto salva em disco via `FileUploadUtil` |
-| Gerenciamento de transações | 🔲 | Pendente — módulo de Pedido/Checkout |
+| Separação de Interesses (SoC)  |  ✅   | Arquitetura em camadas (controller / service / DAO / modelo / view) |
+| Persistência em banco de dados |  ✅   | MySQL via JDBC com `PreparedStatement` |
+| Pool de conexões               |  ✅   | `DatabaseConnector` via JNDI (`DataSource`) configurado no Tomcat |
+| Arquitetura em camadas         |  ✅   | Page Controller, Service Layer, DAO, DTO |
+| Paginação de resultados        |  ✅   | Busca de produtos (`LIMIT ?, ?` com controles de navegação) |
+| Upload de arquivos (foto)      |  ✅   | Foto do produto salva em disco via `FileUploadUtil` |
+| Gerenciamento de transações    |  🔲   | Pendente — módulo de Pedido/Checkout |
 
 ---
 
@@ -205,6 +205,9 @@ No NetBeans:
 
 ## Equipe
 
-Projeto desenvolvido por 3 integrantes como trabalho final da disciplina **Desenvolvimento de Software para Web 2** — ADS, IFSP Campus Araraquara, 1º semestre de 2026.
+Projeto desenvolvido por 3 integrantes como trabalho final da disciplina **Desenvolvimento de Software para Web ** — ADS, IFSP Campus Araraquara, 1º semestre de 2026.
 
 Professor: Marcelo Criscuolo
+Bruno Ferreira da Costa
+GUILHERME Gilson Simonetti
+Igor Ralha Guerreiro Gomes

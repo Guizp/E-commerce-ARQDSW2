@@ -18,18 +18,20 @@ public class ProdutoDAO {
 			
 			Connection conn = DatabaseConnector.getConnection();
 			
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(
-					"SELECT id, descricao, preco FROM produto WHERE id = " + id);
+			PreparedStatement ps = conn.prepareStatement(
+					"SELECT id, descricao, preco, foto FROM produto WHERE id = ?");
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
 			
 			if (rs.next()) {
 				produto.setId(rs.getInt("id"));
 				produto.setDescricao(rs.getString("descricao"));
 				produto.setPreco(rs.getDouble("preco"));
+				produto.setFoto(rs.getString("foto"));
 			}
 			
 			rs.close();
-			stmt.close();
+			ps.close();
 			conn.close();
 			
 		} catch (SQLException e) {
@@ -47,7 +49,7 @@ public class ProdutoDAO {
 			Connection conn = DatabaseConnector.getConnection();
 			
 			Statement stmt = conn.createStatement();
-			String sql = "SELECT id, descricao, preco FROM produto;";
+			String sql = "SELECT id, descricao, preco, foto FROM produto;";
 			ResultSet rs = stmt.executeQuery(sql);
 		
 			while (rs.next()) {
@@ -55,6 +57,7 @@ public class ProdutoDAO {
 				p.setId(rs.getInt("id"));
 				p.setDescricao(rs.getString("descricao"));
 				p.setPreco(rs.getDouble("preco"));
+				p.setFoto(rs.getString("foto"));
 				produtos.add(p);
 			}
 			
@@ -81,7 +84,7 @@ public class ProdutoDAO {
 			Connection conn = DatabaseConnector.getConnection();
 			
 			PreparedStatement ps = conn.prepareStatement(
-					"SELECT id, descricao, preco "
+					"SELECT id, descricao, preco, foto "
 					+ "FROM produto "
 					+ "WHERE descricao LIKE ? "
 					+ "	AND preco BETWEEN ? AND ? "
@@ -101,6 +104,7 @@ public class ProdutoDAO {
 				p.setId(rs.getInt("id"));
 				p.setDescricao(rs.getString("descricao"));
 				p.setPreco(rs.getDouble("preco"));
+				p.setFoto(rs.getString("foto"));
 				produtos.add(p);
 			}
 			
@@ -127,7 +131,7 @@ public class ProdutoDAO {
 			Connection conn = DatabaseConnector.getConnection();
 			
 			PreparedStatement ps = conn.prepareStatement(
-					"SELECT count(*)"
+					"SELECT count(*) "
 					+ "FROM produto "
 					+ "WHERE descricao LIKE ? "
 					+ "	AND preco BETWEEN ? AND ? ");
@@ -155,5 +159,74 @@ public class ProdutoDAO {
 		return total;
 		
 	}
-	
+
+	public int insert(Produto produto) {
+		try {
+
+			Connection conn = DatabaseConnector.getConnection();
+
+			PreparedStatement ps = conn.prepareStatement(
+					"INSERT INTO produto (descricao, preco, foto) VALUES (?, ?, ?)",
+					Statement.RETURN_GENERATED_KEYS);
+
+			ps.setString(1, produto.getDescricao());
+			ps.setDouble(2, produto.getPreco());
+			ps.setString(3, produto.getFoto());
+			ps.executeUpdate();
+
+			int id = 0;
+			ResultSet rs = ps.getGeneratedKeys();
+			if (rs.next()) {
+				id = rs.getInt(1);
+			}
+			rs.close();
+			ps.close();
+			conn.close();
+
+			return id;
+
+		} catch (SQLException e) {
+			throw new DataAccessException(e);
+		}
+	}
+
+	public void update(Produto produto) {
+		try {
+
+			Connection conn = DatabaseConnector.getConnection();
+
+			PreparedStatement ps = conn.prepareStatement(
+					"UPDATE produto SET descricao = ?, preco = ?, foto = ? WHERE id = ?");
+
+			ps.setString(1, produto.getDescricao());
+			ps.setDouble(2, produto.getPreco());
+			ps.setString(3, produto.getFoto());
+			ps.setInt(4, produto.getId());
+			ps.executeUpdate();
+
+			ps.close();
+			conn.close();
+
+		} catch (SQLException e) {
+			throw new DataAccessException(e);
+		}
+	}
+
+	public void delete(int id) {
+		try {
+
+			Connection conn = DatabaseConnector.getConnection();
+
+			PreparedStatement ps = conn.prepareStatement("DELETE FROM produto WHERE id = ?");
+			ps.setInt(1, id);
+			ps.executeUpdate();
+
+			ps.close();
+			conn.close();
+
+		} catch (SQLException e) {
+			throw new DataAccessException(e);
+		}
+	}
+
 }

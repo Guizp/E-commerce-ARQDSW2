@@ -1,0 +1,19 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title><%= request.getAttribute("pageTitle") != null ? request.getAttribute("pageTitle") + " - " : "" %>E-Commerce</title>
+	<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
+</head>
+<body>
+	<header class="topbar">
+		<span class="brand">E-Commerce</span>
+		<nav>
+			<a href="<%= request.getContextPath() %>/"<%= "inicio".equals(request.getAttribute("activePage")) ? " class=\"active\"" : "" %>>Início</a>
+			<a href="<%= request.getContextPath() %>/produto/buscar"<%= "produtos".equals(request.getAttribute("activePage")) ? " class=\"active\"" : "" %>>Produtos</a>
+			<a href="<%= request.getContextPath() %>/cliente/buscar"<%= "clientes".equals(request.getAttribute("activePage")) ? " class=\"active\"" : "" %>>Clientes</a>
+		</nav>
+	</header>
+	<main class="container">

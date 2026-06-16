@@ -1,17 +1,16 @@
-package edu.ifsp.loja.modelo;
+package edu.ifsp.loja.controllers.produto;
 
-public class Produto {
-
-	private int id;
-	private String descricao;
-	private double preco;
+public class ProdutoForm {
+	private Integer id;
+	private String descricao = "";
+	private Double preco = 0.0;
 	private String foto;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -23,11 +22,11 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
-	public double getPreco() {
+	public Double getPreco() {
 		return preco;
 	}
 
-	public void setPreco(double preco) {
+	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
 

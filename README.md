@@ -1,4 +1,4 @@
-# E-Commerce — (Desenvolvimento de Software para Web 2)
+# E-Commerce — (Desenvolvimento de Software para Web)
 
 Sistema de e-commerce de loja única desenvolvido em Java, como projeto final da disciplina de Desenvolvimento de Software para Web (ADS — IFSP Campus Araraquara).
 

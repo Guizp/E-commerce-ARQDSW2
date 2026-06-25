@@ -67,9 +67,12 @@ src/
 ```
 ## Equipe
 
-Projeto desenvolvido por 3 alunos com ajuda do professor como trabalho final da disciplina **Desenvolvimento de Software para Web ** — ADS, IFSP Campus Araraquara, 1º semestre de 2026.
+## 👥 Equipe
 
-Professor: Marcelo Criscuolo
-Bruno Ferreira da Costa
-GUILHERME Gilson Simonetti
-Igor Ralha Guerreiro Gomes
+Projeto desenvolvido por 3 integrantes como trabalho final da disciplina **Desenvolvimento de Software para Web** – ADS, IFSP.
+
+**Professor:** Marcelo Criscuolo
+
+- Bruno Ferreira da Costa
+- Guilherme Gilson Simonetti
+- Igor Ralha Guerreiro Gomes

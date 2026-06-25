@@ -42,6 +42,15 @@ O objetivo deste sistema é simular uma loja virtual completa, permitindo que cl
 
 ---
 
+## Equipe
+
+Projeto desenvolvido por 3 alunos com ajuda do professor como trabalho final da disciplina **Desenvolvimento de Software para Web ** — ADS, IFSP Campus Araraquara, 1º semestre de 2026.
+
+Professor: Marcelo Criscuolo
+Bruno Ferreira da Costa
+GUILHERME Gilson Simonetti
+Igor Ralha Guerreiro Gomes
+
 ## 🏗️ Arquitetura do Projeto
 
 O projeto está organizado em camadas para facilitar manutenção e escalabilidade.
@@ -64,12 +73,4 @@ src/
 ├── service/
 │
 └── util/
-```text
-## Equipe
 
-Projeto desenvolvido por 3 integrantes como trabalho final da disciplina **Desenvolvimento de Software para Web ** — ADS, IFSP Campus Araraquara, 1º semestre de 2026.
-
-Professor: Marcelo Criscuolo
-Bruno Ferreira da Costa
-GUILHERME Gilson Simonetti
-Igor Ralha Guerreiro Gomes

@@ -65,8 +65,6 @@ src/
 │
 └── util/
 ```
-## Equipe
-
 ## 👥 Equipe
 
 Projeto desenvolvido por 3 integrantes como trabalho final da disciplina **Desenvolvimento de Software para Web** – ADS, IFSP.

@@ -1,4 +1,3 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="edu.ifsp.loja.controllers.produto.BuscarProdutoForm" %>
 <%@ page import="edu.ifsp.loja.controllers.produto.ProdutoDTO" %>
 <%@ page import="edu.ifsp.loja.util.StringUtil" %>
@@ -15,19 +14,19 @@ request.setAttribute("activePage", "produtos");
 <div class="card">
 	<form id="search-form" method="get" action="<%= request.getContextPath() %>/produto/buscar">
 		<div class="form-row">
-			<label for="descricao">Descri√ß√£o:</label>
+			<label for="descricao">DescriÁ„o:</label>
 			<input type="text" name="descricao" id="descricao" value="<%= StringUtil.emptyIfNull(form.getDescricao()) %>">
 		</div>
 		<div class="form-row">
-			<label for="preco-minimo">Pre√ßo m√≠nimo:</label>
+			<label for="preco-minimo">PreÁo mÌnimo:</label>
 			<input type="number" name="precoMinimo" id="preco-minimo" value="<%= form.getPrecoMinimo() %>">
 		</div>
 		<div class="form-row">
-			<label for="preco-maximo">Pre√ßo m√°ximo:</label>
+			<label for="preco-maximo">PreÁo m·ximo:</label>
 			<input type="number" name="precoMaximo" id="preco-maximo" value="<%= form.getPrecoMaximo() %>">
 		</div>
 		<div class="form-row">
-			<label for="pagesize">Registros por p√°gina:</label>
+			<label for="pagesize">Registros por p·gina:</label>
 			<input type="number" name="pageSize" id="pagesize" value="<%= form.getPageSize() %>">
 		</div>
 		<input type="hidden" name="page" value="<%= form.getPage() %>">
@@ -51,9 +50,10 @@ if (request.getAttribute("produtos") != null) {
 	<tr>
 		<th>Foto</th>
 		<th>ID</th>
-		<th>Descri√ß√£o</th>
-		<th>Pre√ßo</th>
-		<th>A√ß√µes</th>
+		<th>DescriÁ„o</th>
+		<th>PreÁo</th>
+		<th>Estoque</th>
+		<th>AÁıes</th>
 	</tr>
 	<% for (ProdutoDTO p : produtos) { %>
 	<tr>
@@ -67,6 +67,7 @@ if (request.getAttribute("produtos") != null) {
 		<td><%= p.id() %></td>
 		<td><%= p.descricao() %></td>
 		<td>R$ <%= String.format("%.2f", p.preco()) %></td>
+		<td><%= p.estoque() %></td>
 		<td class="actions">
 			<a class="btn btn-sm" href="<%= request.getContextPath() %>/produto/editar?id=<%= p.id() %>">Editar</a>
 			<form method="post" action="<%= request.getContextPath() %>/produto/excluir" onsubmit="return confirm('Remover o produto \'<%= p.descricao() %>\'?');">
@@ -84,23 +85,30 @@ if (request.getAttribute("produtos") != null) {
 	<a href="#" onclick="movePage(-1)">Anterior</a>
 	<% } %>
 
-	<% for (int i = 1; i <= totalPag; i++) { %>
-		<% if (i == form.getPage()) { %>
+	<%
+	int paginaAtual = form.getPage();
+	int inicio = Math.max(1, paginaAtual - 4);
+	int fim = Math.min(totalPag, paginaAtual + 5);
+	if (inicio > 1) { %><span>...</span><% }
+	for (int i = inicio; i <= fim; i++) {
+		if (i == paginaAtual) { %>
 		<strong><%= i %></strong>
 		<% } else { %>
 		<a href="#" onclick="gotoPage(<%= i %>)"><%= i %></a>
-		<% } %>
-	<% } %>
+		<% }
+	}
+	if (fim < totalPag) { %><span>...</span><% } %>
 
 	<% if (form.getPage() < totalPag) { %>
-	<a href="#" onclick="movePage(1)">Pr√≥xima</a>
-	<a href="#" onclick="gotoPage(<%= totalPag %>)">√öltima</a>
+	<a href="#" onclick="movePage(1)">Proxima</a>
+	<a href="#" onclick="gotoPage(<%= totalPag %>)">Ultima</a>
 	<% } %>
+	<span class="subtitle" style="margin-left:1rem;">Pagina <%= paginaAtual %> de <%= totalPag %></span>
 </div>
 <%
 } else {
 %>
-<p class="empty-state">Nenhum resultado encontrado para os crit√©rios informados.</p>
+<p class="empty-state">Nenhum resultado encontrado para os critÈrios informados.</p>
 <%
 }
 %>

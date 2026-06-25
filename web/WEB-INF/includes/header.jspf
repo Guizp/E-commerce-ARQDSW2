@@ -1,4 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="edu.ifsp.loja.controllers.auth.UsuarioLogado" %>
+<%
+UsuarioLogado usuarioLogado = (UsuarioLogado) session.getAttribute("usuarioLogado");
+%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -11,9 +15,19 @@
 	<header class="topbar">
 		<span class="brand">E-Commerce</span>
 		<nav>
-			<a href="<%= request.getContextPath() %>/"<%= "inicio".equals(request.getAttribute("activePage")) ? " class=\"active\"" : "" %>>Início</a>
-			<a href="<%= request.getContextPath() %>/produto/buscar"<%= "produtos".equals(request.getAttribute("activePage")) ? " class=\"active\"" : "" %>>Produtos</a>
-			<a href="<%= request.getContextPath() %>/cliente/buscar"<%= "clientes".equals(request.getAttribute("activePage")) ? " class=\"active\"" : "" %>>Clientes</a>
+			<% if (usuarioLogado != null && usuarioLogado.isAdm()) { %>
+				<a href="<%= request.getContextPath() %>/produto/buscar"<%= "produtos".equals(request.getAttribute("activePage")) ? " class=\"active\"" : "" %>>Produtos</a>
+				<a href="<%= request.getContextPath() %>/cliente/buscar"<%= "clientes".equals(request.getAttribute("activePage")) ? " class=\"active\"" : "" %>>Clientes</a>
+			<% } else if (usuarioLogado != null) { %>
+				<a href="<%= request.getContextPath() %>/produto/catalogo"<%= "catalogo".equals(request.getAttribute("activePage")) ? " class=\"active\"" : "" %>>Catálogo</a>
+				<a href="<%= request.getContextPath() %>/carrinho"<%= "carrinho".equals(request.getAttribute("activePage")) ? " class=\"active\"" : "" %>>Carrinho</a>
+				<a href="<%= request.getContextPath() %>/pedido/meus"<%= "pedidos".equals(request.getAttribute("activePage")) ? " class=\"active\"" : "" %>>Meus pedidos</a>
+			<% } %>
+
+			<% if (usuarioLogado != null) { %>
+				<span style="margin-left: 1.25rem; opacity: 0.85;">Olá, <%= usuarioLogado.getNome() %></span>
+				<a href="<%= request.getContextPath() %>/logout" style="margin-left: 0.75rem;">Sair</a>
+			<% } %>
 		</nav>
 	</header>
 	<main class="container">

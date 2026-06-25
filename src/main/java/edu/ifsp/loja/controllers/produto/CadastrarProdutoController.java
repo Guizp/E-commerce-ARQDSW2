@@ -26,19 +26,23 @@ public class CadastrarProdutoController extends HttpServlet {
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ProdutoForm form = new ProdutoForm();
-		form.setDescricao(request.getParameter("descricao"));
-		form.setPreco(Double.parseDouble(request.getParameter("preco")));
+        protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            ProdutoForm form = new ProdutoForm();
+            form.setDescricao(request.getParameter("descricao"));
 
-		Part fotoPart = request.getPart("foto");
-		String uploadDir = getServletContext().getRealPath("/uploads/produtos");
-		String nomeArquivo = FileUploadUtil.salvar(fotoPart, uploadDir);
-		form.setFoto(nomeArquivo);
+            String precoStr = request.getParameter("preco").replace(",", ".");
+            form.setPreco(Double.parseDouble(precoStr));
 
-		ProdutoService service = new ProdutoService();
-		service.salvar(form);
+            String estoqueStr = request.getParameter("estoque");
+            form.setEstoque(estoqueStr != null && !estoqueStr.isBlank() ? Integer.parseInt(estoqueStr) : 0);
 
-		response.sendRedirect(request.getContextPath() + "/produto/buscar");
-	}
+            Part fotoPart = request.getPart("foto");
+            String uploadDir = getServletContext().getRealPath("/uploads/produtos");
+            String nomeArquivo = FileUploadUtil.salvar(fotoPart, uploadDir);
+            form.setFoto(nomeArquivo);
+
+            ProdutoService service = new ProdutoService();
+            service.salvar(form);
+            response.sendRedirect(request.getContextPath() + "/produto/buscar");
+    }
 }

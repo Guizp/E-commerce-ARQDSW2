@@ -6,6 +6,8 @@ public class Cliente {
 	private String nome;
 	private String email;
 	private boolean ativo;
+	private String senha;
+	private String perfil;
 	
 
 	public boolean isAtivo() {
@@ -38,6 +40,26 @@ public class Cliente {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public String getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(String perfil) {
+		this.perfil = perfil;
+	}
+
+	public boolean isAdm() {
+		return "adm".equals(perfil);
 	}
 
 }

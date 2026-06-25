@@ -22,15 +22,21 @@ request.setAttribute("activePage", "produtos");
 		<% } %>
 
 		<div class="form-row">
-			<label for="descricao">Descrição:</label>
+			<label for="descricao">Descricao:</label>
 			<input type="text" name="descricao" id="descricao" required
 				   value="<%= StringUtil.emptyIfNull(form.getDescricao()) %>">
 		</div>
 
 		<div class="form-row">
-			<label for="preco">Preço:</label>
+			<label for="preco">Preco:</label>
 			<input type="number" step="0.01" min="0" name="preco" id="preco" required
 				   value="<%= form.getPreco() %>">
+		</div>
+
+		<div class="form-row">
+			<label for="estoque">Estoque:</label>
+			<input type="number" min="0" name="estoque" id="estoque" required
+				   value="<%= form.getEstoque() %>">
 		</div>
 
 		<% if (editando && form.getFoto() != null) { %>
@@ -47,7 +53,7 @@ request.setAttribute("activePage", "produtos");
 			<input type="file" name="foto" id="foto" accept="image/*">
 		</div>
 
-		<button type="submit"><%= editando ? "Salvar alterações" : "Cadastrar" %></button>
+		<button type="submit"><%= editando ? "Salvar" : "Cadastrar" %></button>
 		<a class="btn" href="<%= request.getContextPath() %>/produto/buscar"
 		   style="background-color: var(--color-muted); margin-left: 0.5rem;">Cancelar</a>
 	</form>

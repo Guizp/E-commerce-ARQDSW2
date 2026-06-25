@@ -6,6 +6,7 @@ public class Produto {
 	private String descricao;
 	private double preco;
 	private String foto;
+	private int estoque;
 
 	public int getId() {
 		return id;
@@ -37,6 +38,14 @@ public class Produto {
 
 	public void setFoto(String foto) {
 		this.foto = foto;
+	}
+
+	public int getEstoque() {
+		return estoque;
+	}
+
+	public void setEstoque(int estoque) {
+		this.estoque = estoque;
 	}
 
 }

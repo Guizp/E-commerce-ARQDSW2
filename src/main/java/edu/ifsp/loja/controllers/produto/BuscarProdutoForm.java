@@ -5,7 +5,7 @@ public class BuscarProdutoForm {
 	private Double precoMinimo = 0.0;
 	private Double precoMaximo = 1000000.0;
 	private int page = 1;
-	private int pageSize = 10;
+	private int pageSize = 24;
 
 	public String getDescricao() {
 		return descricao;

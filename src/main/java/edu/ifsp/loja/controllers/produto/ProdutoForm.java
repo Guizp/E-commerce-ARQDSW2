@@ -5,6 +5,7 @@ public class ProdutoForm {
 	private String descricao = "";
 	private Double preco = 0.0;
 	private String foto;
+	private int estoque = 0;
 
 	public Integer getId() {
 		return id;
@@ -36,6 +37,14 @@ public class ProdutoForm {
 
 	public void setFoto(String foto) {
 		this.foto = foto;
+	}
+
+	public int getEstoque() {
+		return estoque;
+	}
+
+	public void setEstoque(int estoque) {
+		this.estoque = estoque;
 	}
 
 }

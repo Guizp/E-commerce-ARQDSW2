@@ -39,6 +39,7 @@ public class EditarProdutoController extends HttpServlet {
 
 		form.setDescricao(request.getParameter("descricao"));
 		form.setPreco(Double.parseDouble(request.getParameter("preco")));
+		form.setEstoque(Integer.parseInt(request.getParameter("estoque")));
 
 		String uploadDir = getServletContext().getRealPath("/uploads/produtos");
 		Part fotoPart = request.getPart("foto");

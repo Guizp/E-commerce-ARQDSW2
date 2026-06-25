@@ -10,32 +10,27 @@ import edu.ifsp.loja.persistencia.ProdutoDAO;
 
 public class ProdutoService {
 	private ProdutoDAO dao = new ProdutoDAO();
-	
+
 	public List<ProdutoDTO> search(BuscarProdutoForm form) {
-		List<ProdutoDTO> produtos = dao.findPaged(
-				form.getPage(), form.getPageSize(), 
+		return dao.findPaged(form.getPage(), form.getPageSize(),
 				form.getDescricao(), form.getPrecoMinimo(), form.getPrecoMaximo())
 				.stream()
-				.map(p -> new ProdutoDTO(p.getId(), p.getDescricao(), p.getPreco(), p.getFoto()))
-				.toList();		
-		return produtos;
+				.map(p -> new ProdutoDTO(p.getId(), p.getDescricao(), p.getPreco(), p.getFoto(), p.getEstoque()))
+				.toList();
 	}
-	
+
 	public int searchTotal(BuscarProdutoForm form) {
-		int total = dao.total(form.getDescricao(), form.getPrecoMinimo(), form.getPrecoMaximo());
-				
-		return total;
+		return dao.total(form.getDescricao(), form.getPrecoMinimo(), form.getPrecoMaximo());
 	}
 
 	public ProdutoForm findById(int id) {
 		Produto produto = dao.findById(id);
-
 		ProdutoForm form = new ProdutoForm();
 		form.setId(produto.getId());
 		form.setDescricao(produto.getDescricao());
 		form.setPreco(produto.getPreco());
 		form.setFoto(produto.getFoto());
-
+		form.setEstoque(produto.getEstoque());
 		return form;
 	}
 
@@ -45,6 +40,7 @@ public class ProdutoService {
 		produto.setDescricao(form.getDescricao());
 		produto.setPreco(form.getPreco());
 		produto.setFoto(form.getFoto());
+		produto.setEstoque(form.getEstoque());
 
 		if (form.getId() == null) {
 			dao.insert(produto);
@@ -53,15 +49,10 @@ public class ProdutoService {
 		}
 	}
 
-	/**
-	 * Remove o produto do banco e devolve o nome do arquivo de foto associado
-	 * (para que o controller possa apagar o arquivo do disco, se houver).
-	 */
 	public String excluir(int id) {
 		Produto produto = dao.findById(id);
 		String foto = produto.getFoto();
 		dao.delete(id);
 		return foto;
 	}
-
 }

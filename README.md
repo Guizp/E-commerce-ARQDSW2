@@ -40,8 +40,6 @@ O objetivo deste sistema é simular uma loja virtual completa, permitindo que cl
 - Busca de clientes
 - Gerenciamento de informações dos usuários
 
----
-
 ## 🏗️ Arquitetura do Projeto
 
 O projeto está organizado em camadas para facilitar manutenção e escalabilidade.
